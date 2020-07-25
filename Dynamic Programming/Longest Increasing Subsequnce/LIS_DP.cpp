@@ -4,19 +4,25 @@
 //Solution (DP):
 #include<iostream>
 #include<climits>
+#include<vector>
 #include<cstring>
 using namespace std;
 void lis(int arr[],int n,int& max_len)
 {
+    vector<int> result;
     int *lookup = new int[n];
+
     lookup[0] = 1;
+
     for(int i = 1;i < n;i++)
     {
         lookup[i] = 1;
         for(int j = 0;j < i;j++)
         {
             if(arr[j]<arr[i] && lookup[j]+1 > lookup[i])
+            {
                 lookup[i]++;
+            }
         }
     }
     for(int i=0;i<n;i++)
