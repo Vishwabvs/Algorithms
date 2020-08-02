@@ -1,3 +1,5 @@
+//https://www.geeksforgeeks.org/palindrome-partitioning-dp-17/
+
 #include<iostream>
 #include<bits/stdc++.h>
 #include<climits>

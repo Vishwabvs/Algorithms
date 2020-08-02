@@ -1,36 +1,18 @@
 //https://www.geeksforgeeks.org/palindrome-partitioning-dp-17/
 
-
 #include<iostream>
 #include<bits/stdc++.h>
 #include<climits>
 #include<cstring>
 using namespace std;
 
-int dp[1001][1001];
-
-bool isPalindrome(string str, int i, int j)
-{
-	while(i<j)
-	{
-		if(str[i]==str[j])
-		{
-			i++;j--;
-		}
-		else
-			return false;
-	}
-	return true;
-}
-
 int minpalPartition(string str, int n)
 {
-	int cut[n][n];
+	int cut[n];
 	bool pal[n][n];
 
 	for(int i = 0; i<n;i++)
 	{
-		cut[i][i] = 0;
 		pal[i][i] = true;
 	}
 
@@ -46,22 +28,26 @@ int minpalPartition(string str, int n)
 				pal[i][j] = (str[i] == str[j]);
 			else	//if strlen!=2, check first and last characters and also the substring str[i+1 . . j-1]
 				pal[i][j] = ((str[i] == str[j]) && pal[i+1][j-1]);	
-
-
-			if(pal[i][j]==true)		//Substring str[i..j] is palindrome, then cut[i..j] will be 0
-				cut[i][j] = 0;
-			else
-			{
-				cut[i][j] = INT_MAX;
-				for(int k = i; k < j; k++)
-				{
-					cut[i][j] = min(cut[i][j], (cut[i][k] + cut[k+1][j] + 1));
-				}
-			}
-
 		}
 	}
-	return cut[0][n-1];
+
+	for(int i = 0; i < n; i++)
+	{
+		if(pal[0][i] == true)
+		{
+			cut[i] = 0;
+		}
+		else
+		{
+			cut[i] = INT_MAX;
+			for(int j = 0; j < i; j++)
+			{
+				if(pal[j+1][i] == true && (1 + cut[j] < cut[i]))
+					cut[i] = 1 + cut[j];
+			}
+		}
+	}
+	return cut[n-1];
 }
 
 int main()
