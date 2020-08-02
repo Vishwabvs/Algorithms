@@ -31,16 +31,11 @@ int slis(int arr[],int n)
 
 int main()
  {
-	int q;
-	cin>>q;
-	while(q--)
-	{
-	    int n;
-	    cin>>n;
-	    int *arr = new int[n];
-	    for(int i=0;i<n;i++)
-	        cin>>arr[i];
-	    cout<<slis(arr,n)<<endl;
-	}
+	int n;
+	cin>>n;
+    int *arr = new int[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+    cout<<slis(arr,n)<<endl;
 	return 0;
 }
