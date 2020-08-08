@@ -40,6 +40,12 @@ public:
 		for(int i=0;i<V;i++)
 			visited[i] = false;
 		dfs_visit(src, visited);
+
+		//for handling disconnected graphs
+		for (int i = 0; i < V; i++) 
+        	if (visited[i] == false) 
+            	dfs_visit(i, visited);
+
 	}
 
 	void bfs(int src)
