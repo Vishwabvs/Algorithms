@@ -24,7 +24,7 @@ int minPages(int *arr, int n, int k)
 int minPages_bsearch(int* arr, int n, int k)
 {
     int total_pages = sum(arr, 0, n-1);
-    int max_pages = INT_MAX;
+    int max_pages = INT_MIN;
     for(int i=0;i<n;i++)
         if(arr[i]>max_pages)
             max_pages = arr[i];
